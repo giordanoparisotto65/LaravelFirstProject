@@ -10,7 +10,14 @@
 
   @php
 
+    if(!empty(Request::route('id')))  {
+        $action = action("App\Http\Controllers\UsuarioController@update", $usuario->id);
+    }
+
+        else{
+            
   $action = action("App\Http\Controllers\UsuarioController@store");
+}
 
   @endphp
 
@@ -25,17 +32,17 @@
 
             <div class="col-3">
               <label class="form-label">Nome</label><br>
-              <input type="text" class="form-control" name="nome">
+              <input type="text" class="form-control" name="nome" value="@if(!empty($usuario->nome)) {{$usuario->nome}} else {{''}} @endif" /><br>
             </div>
 
             <div class="col-3">
              <label class="form-label">Telefone</label><br>
-             <input type="text" class="form-control" name="telefone">
+             <input type="text" class="form-control" name="telefone" value="@if(!empty($usuario->telefone)) {{$usuario->telefone}} else {{''}} @endif" /><br>
             </div>
 
             <div class="col-3">
                 <label class="form-label">Email</label><br>
-                <input type="text" class="form-control" name="email" >
+                <input type="text" class="form-control" name="email" value="@if(!empty($usuario->email)) {{$usuario->email}} else {{''}} @endif" /><br>
                </div>
 
 

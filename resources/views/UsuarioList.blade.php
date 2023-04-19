@@ -47,9 +47,9 @@
               <td>{{$item->nome}}</td>
               <td>{{$item->telefone}}</td>
               <td>{{$item->email}}</td>
-              <td><a href='./UsuarioForm.php?id=$item->id'><i class='fa-solid fa-pen-to-square' style='color:orange;'></i></a></td>
-              <td><a href='./UsuarioList.php?id=$item->id'
-                      onclick='return confirm(\"Deseja Excluir?\")'
+              <td><a href="{{ action ('App\Http\Controllers\UsuarioController@edit', $item->id)}}"><i class='fa-solid fa-pen-to-square' style='color:orange;'></i></a></td>
+              <td><a href="{{ action ('App\Http\Controllers\UsuarioController@destroy', $item->id)}}"
+                      onclick='return confirm("Deseja Excluir?")'
               ><i class='fa-solid fa-trash' style='color:red;'></i></a></td>
             </tr>
          @endforeach

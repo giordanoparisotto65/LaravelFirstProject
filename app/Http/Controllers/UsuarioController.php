@@ -29,4 +29,32 @@ class UsuarioController extends Controller
             return \redirect()->action("App\Http\Controllers\UsuarioController@index");
 
           }
+
+    function edit($id){
+        $usuario = Usuario::findOrFail($id);
+        return view("UsuarioForm") ->with(['usuario'=>$usuario]);
+    }
+
+
+    function update(Request $request){
+        Usuario::updateOrCreate(['id'=>$request->id],[
+            #UpdateorCreate tá criando uma nova
+            'nome'=> $request->nome,
+            'telefone'=> $request->telefone,
+            'email'=> $request->email]);
+
+            return \redirect()->action("App\Http\Controllers\UsuarioController@index");
+
+          }
+
+
+    function destroy($id){
+        $usuario = Usuario::findOrFail($id);
+
+        $usuario->delete();
+
+        return \redirect()->action("App\Http\Controllers\UsuarioController@index");
+    }
+
+
 }
